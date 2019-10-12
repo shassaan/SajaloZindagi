@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    @Html.Partial("Docs")
+</head>
+<body>
+
+
+    <!-- Fixed navbar -->
+    <div class="container">
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+            <a class="navbar-brand" href="/Admin">Admin</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/Admin">Home<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <div class="dropdown show">
+                            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Create
+                            </a>
+
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+
+                                @if (ViewBag.access == false)
+                                {
+                                    <a class="dropdown-item" href="/Admin/createService">Service</a>
+                                    <a class="dropdown-item" href="/Admin/createEventServices">Event Services</a>
+                                    <a class="dropdown-item" href="/Admin/createImages">Images</a>
+                                }
+                                else
+                                {
+                                    <a class="dropdown-item" href="/Admin/create">Admin</a>
+                                    <a class="dropdown-item" href="/Admin/createEvent">Event</a>
+                                    <a class="dropdown-item" href="/Admin/createSubEvent">Sub Event</a>
+                                    <a class="dropdown-item" href="/Admin/createService">Service</a>
+                                    <a class="dropdown-item" href="/Admin/createEventServices">Event Services</a>
+                                    <a class="dropdown-item" href="/Admin/createImages">Images</a>
+                                    <a class="dropdown-item" href="/Admin/CreateVolunteer">Volunteer</a>
+                                }
+
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Admin/logout">logout</a>
+                    </li>
+                </ul>
+                
+            </div>
+        </nav>
+    </div>
+
+
+    <!-- Begin page content -->
+    <br />
+    <br />
+    <br />
+    <main role="main" class="container">
+        @RenderBody()
+    </main>
+
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    @Html.Partial("Jquery")
+
+
+</body>
+</html>

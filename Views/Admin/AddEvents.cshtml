@@ -1,0 +1,82 @@
+﻿
+@model List<SajaloZindagi.Models.Events>
+@{
+    Layout = "_AdminLayout";
+}
+
+<div class="container">
+    @if (ViewBag.error > 0)
+    {
+        if (ViewBag.error == 1)
+        {
+            <div class="alert alert-success">
+                <strong>Successfull !!</strong>
+            </div>
+        }
+        else if (ViewBag.error == 2)
+        {
+            <div class="alert alert-danger">
+                <strong>Something Went Wrong!!(Error)</strong>
+            </div>
+        }
+        else if (ViewBag.error == 3)
+        {
+            <div class="alert alert-danger">
+                <strong>Information you provided is Invalid</strong>
+            </div>
+        }
+    }
+</div>
+<h1>Events</h1>
+<hr />
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+
+            <form asp-action="AddEvents" action="\Admin\createEvent" method="post" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="EName" class="control-label">Event Title</label>
+                    <input asp-for="EName" class="form-control" name="EName" />
+                    <span asp-validation-for="EName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="EDp" class="control-label">Picture</label>
+                    <input asp-for="EDp" class="form-control" name="EDp" type="file" />
+                    <span asp-validation-for="EDp" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="EDescriiption" class="control-label">Description</label>
+                    <textarea cols="50" asp-for="EDescriiption" class="form-control" name="EDescriiption"></textarea>
+                    <span asp-validation-for="EDescriiption" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </form>
+        </div>
+        <div class="col-md-8">
+            @if (Model != null)
+            {
+                @foreach (var item in Model)
+                {
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="container">
+                                <img src="@item.EDp" height="150" width="150" alt="No image" />
+                                <br />
+                                <h4>@item.EName</h4>
+                                <p>@item.EDescriiption</p>
+                                <a class="btn btn-danger" href="\Admin\delete\@item.EId">Delete</a><a class="btn btn-default" href="\Admin\update\@item.EId">Edit</a>
+                            </div>
+                            <br /><br />
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</div>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

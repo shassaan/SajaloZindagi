@@ -1,0 +1,52 @@
+﻿@model List<SajaloZindagi.Models.CustomOrder>
+@{
+    Layout = "_AdminLayout";
+}
+<a href="/Admin/showPrev">Show Previous Orders</a>
+<h1>Welcome To Admin Home</h1>
+<h3>Recent Orders</h3>
+<div class="row">
+    <div class="col-md-6">
+        <table class="table table-responsive">
+            <tr>
+                <td>Phone No.</td>
+                <td>Orders</td>
+            </tr>
+            @if (Model != null)
+            {
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.OPh</td>
+                        <td><span class="badge badge-success">@item.count</span></td>
+                        <td><a class="text-capitalize text-info" href="/Admin/detOrder/@item.OPh">Details</a></td>
+                    </tr>
+                }
+            }
+        </table>
+    </div>
+
+    <div class="col-md-6">
+        <div class="jumbotron">
+            <table class="table table-responsive">
+                <tr>
+                    <td>Phone No.</td>
+                    <td>Orders</td>
+                </tr>
+
+                @if (ViewBag.services != null)
+                {
+                    @foreach (var item in ViewBag.services)
+                    {
+                        <tr>
+                            <td>@item.OPh</td>
+                            <td><span class="badge badge-success">@item.count</span></td>
+                            <td><a class="text-capitalize text-info" href="/Admin/detOrderP/@item.OPh">Details</a></td>
+                        </tr>
+                    }
+                }
+
+            </table>
+        </div>
+    </div>
+</div>

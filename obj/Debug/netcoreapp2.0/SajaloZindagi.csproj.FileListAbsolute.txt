@@ -1,0 +1,11 @@
+E:\Web(asp.net)\SajaloZindagi\SajaloZindagi\bin\Debug\netcoreapp2.0\SajaloZindagi.deps.json
+E:\Web(asp.net)\SajaloZindagi\SajaloZindagi\bin\Debug\netcoreapp2.0\SajaloZindagi.runtimeconfig.json
+E:\Web(asp.net)\SajaloZindagi\SajaloZindagi\bin\Debug\netcoreapp2.0\SajaloZindagi.runtimeconfig.dev.json
+E:\Web(asp.net)\SajaloZindagi\SajaloZindagi\bin\Debug\netcoreapp2.0\SajaloZindagi.dll
+E:\Web(asp.net)\SajaloZindagi\SajaloZindagi\bin\Debug\netcoreapp2.0\SajaloZindagi.pdb
+E:\Web(asp.net)\SajaloZindagi\SajaloZindagi\obj\Debug\netcoreapp2.0\SajaloZindagi.csprojAssemblyReference.cache
+E:\Web(asp.net)\SajaloZindagi\SajaloZindagi\obj\Debug\netcoreapp2.0\SajaloZindagi.csproj.CoreCompileInputs.cache
+E:\Web(asp.net)\SajaloZindagi\SajaloZindagi\obj\Debug\netcoreapp2.0\SajaloZindagi.AssemblyInfoInputs.cache
+E:\Web(asp.net)\SajaloZindagi\SajaloZindagi\obj\Debug\netcoreapp2.0\SajaloZindagi.AssemblyInfo.cs
+E:\Web(asp.net)\SajaloZindagi\SajaloZindagi\obj\Debug\netcoreapp2.0\SajaloZindagi.dll
+E:\Web(asp.net)\SajaloZindagi\SajaloZindagi\obj\Debug\netcoreapp2.0\SajaloZindagi.pdb

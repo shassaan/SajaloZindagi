@@ -1,0 +1,64 @@
+﻿@model SajaloZindagi.Models.Services
+
+@{
+    Layout = "_AdminLayout";
+}
+
+
+<h4>Services</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AddServices" method="post" action="\Admin\updateService" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="SName" class="control-label">Service Name</label>
+                <input type="hidden" name="SId" value="@Model.SId"/>
+                <input asp-for="SName" class="form-control" name="SName" value="@Model.SName"/>
+                <span asp-validation-for="SName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SPrice" class="control-label">Estemated Price</label>
+                <input asp-for="SPrice" class="form-control" name="SPrice" value="@Model.SPrice"/>
+                <span asp-validation-for="SPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SDp" class="control-label">Picture</label>
+                <input asp-for="SDp" class="form-control" type="file" name="SDp"/>
+                <img src="@Model.SDp" alt="No Image" width="50" height="50"/>
+                <span asp-validation-for="SDp" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SIsAvailable" class="control-label">Availability</label>
+                @if (Model.SIsAvailable == false)
+                {
+                    <span><strong>Available</strong></span><input asp-for="SIsAvailable" class="form-control" type="radio" name="SIsAvailable" value="true" />
+                    <span><strong>Not Available</strong></span><input asp-for="SIsAvailable" class="form-control" type="radio" name="SIsAvailable" value="false" checked />
+                }
+                else
+                {
+                    <span><strong>Available</strong></span><input asp-for="SIsAvailable" class="form-control" type="radio" name="SIsAvailable" value="true" checked />
+                    <span><strong>Not Available</strong></span><input asp-for="SIsAvailable" class="form-control" type="radio" name="SIsAvailable" value="false" />
+                }
+
+
+
+
+                <span asp-validation-for="SIsAvailable" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SDetail" class="control-label">Describe Your Service</label>
+                <textarea asp-for="SDetail" class="form-control" cols="50" name="SDetail">@Model.SDetail</textarea>
+                <span asp-validation-for="SDetail" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

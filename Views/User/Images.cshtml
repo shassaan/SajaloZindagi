@@ -1,0 +1,73 @@
+﻿@model List<SajaloZindagi.Models.Simages>
+@{
+    Layout = "_UserLayout";
+}
+<br />
+<br />
+<br />
+@if (Model != null)
+{
+    @if (Model != null)
+    {
+        <div class="row">
+            @for (int i = 0; i < Model.Count; i++)
+            {
+                if (true)
+                {
+
+                }
+                if (i > 0 && i % 4 == 0)
+                {
+                @:</div><br /><div class="row">
+                }
+
+
+                <div class="col-md-3">
+
+                    <div class="well">
+                        @if (Model[i].ImgPath.Contains("youtube"))
+                        {
+                            <div class="embed-responsive embed-responsive-1by1">
+                                <iframe class="embed-responsive-item" src="@Model[i].ImgPath.TrimEnd()" allowfullscreen></iframe>
+                            </div>
+
+
+                        }
+                        else
+                        {
+                            <img src="@Model[i].ImgPath.TrimEnd()" height="200" width="200" class="rounded-circle" />
+                            <br />
+
+
+                        }
+                        <br />
+                        <a href="#" id="@Model[i].ImgId" class="btn btn-primary" onclick="add()"><i class="fa fa-plus-square-o"></i>Add To Cart</a>
+                        <a href="/User/imgDetails/@Model[i].ImgId" class="btn btn-info">Details</a>
+                    </div>
+
+
+                </div>
+
+
+            }
+        </div>
+    }
+}
+
+<script>
+    function add() {
+        $.ajax({
+            method: "POST",
+            url: '@Url.Action("AddToCart","User")',
+            data: { 'id': event.target.id },
+            success: function (data) {
+                if (data == 1) {
+                    var prevCount = $('#badge').html();
+                    $('#badge').html(++prevCount);
+                    alert("Added to cart");
+                }
+            }
+        });
+
+    }
+</script>

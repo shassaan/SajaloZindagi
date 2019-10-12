@@ -1,0 +1,79 @@
+﻿@model List<SajaloZindagi.Models.Services>
+
+@{
+    Layout = "_AdminLayout";
+}
+
+<br /><br />
+<div class="container">
+    @if (ViewBag.error == 0)
+    {
+        <div class="alert alert-success">
+            <strong>Your order has been placed successfully !!!</strong>
+        </div>
+    }
+    else if (ViewBag.error == 2)
+    {
+        <div class="alert alert-danger">
+            <strong>Something Went Wrong !!</strong>
+        </div>
+    }
+    else if (ViewBag.error == 3)
+    {
+        <div class="alert alert-danger">
+            <strong>Invalid Data Provided !!!</strong>
+        </div>
+    }
+</div>
+<div class="container">
+    <h4>Images</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form action="/Admin/createImages" method="post" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="ImgPath" class="control-label">Name</label>
+                    <input asp-for="ImgPath" class="form-control" type="text" name="ImgName" id="imgInput" /><br />
+                    <label asp-for="ImgPath" class="control-label">Price</label>
+                    <input asp-for="ImgPath" class="form-control" type="text" name="ImgPrice" id="imgInput" /><br />
+                    <label asp-for="ImgPath" class="control-label">Select Image/Video</label>
+                    <input asp-for="ImgPath" class="form-control" type="file" name="ImgPath" id="imgInput" /><br />
+                    <input class="form-control" type="text" name="img" id="vdoInput" />
+                    <span asp-validation-for="ImgPath" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="SId" class="control-label">Service</label>
+                    <select asp-for="SId" class="form-control" name="SId">
+                        <option>--SELECT--</option>
+                        @if (Model != null)
+                        {
+                            @foreach (var item in Model)
+                            {
+                                <option value="@item.SId">@item.SName</option>
+                            }
+                        }
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label asp-for="IsDeal" class="control-label">Description</label>
+                    <textarea name="ImgDescription" cols="100" rows="50"></textarea>
+                    <span asp-validation-for="IsDeal" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="IsDeal" class="control-label">Is it a Package ?</label>
+                    <input  class="form-control" name="IsDeal" type="checkbox" value="true"/>
+                    <input type="hidden" value="false" name="IsDeal"/>
+                    <span asp-validation-for="IsDeal" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>
+</div>

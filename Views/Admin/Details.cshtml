@@ -1,0 +1,48 @@
+﻿@model List<SajaloZindagi.Models.Customdetails>
+@{
+    Layout = "_AdminLayout";
+}
+
+@if (Model != null)
+{
+    <h3>PH # @ViewBag.num</h3>
+    @if (ViewBag.vName != null)
+    {
+        <h3>Volunteeer @ViewBag.vName</h3>
+    }
+    <h3>@Model[0].Oname</h3>
+    <h3>@Model[0].date</h3>
+    <h3>@Model[0].FuncTime</h3>
+    <h3>@Model[0].FuncType</h3>
+    <h3>No. Of Guests : @Model[0].NoOfGuests</h3>
+    <table class="table table-bordered">
+        <tr>
+            <td><h3>Name</h3></td>
+            <td><h3>Image/Video</h3></td>
+            <td><h3>Description</h3></td>
+        </tr>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td><p class="text text-info">@item.ImgName</p></td>
+            @if (item.ImgPath.Contains("youtube"))
+            {
+                <td>
+                    <div class="embed-responsive embed-responsive-1by1">
+                        <iframe class="embed-responsive-item" src="@item.ImgPath.TrimEnd()" allowfullscreen></iframe>
+                    </div>
+                </td>
+            }
+            else
+            {
+                <td><img src="@item.ImgPath.TrimEnd()" width="200" height="200" class="img-responsive" /></td>
+            }
+
+            <td><p class="text text-info">@item.description</p></td>
+        </tr>
+        }
+    </table>
+    <div class="panel panel-info">
+        <h4>Est Price</h4><h5>Rs @Model.Sum(s => s.ImgPrice)/-</h5>
+    </div>
+}

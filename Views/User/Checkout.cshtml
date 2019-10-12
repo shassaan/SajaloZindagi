@@ -1,0 +1,135 @@
+﻿@model List<SajaloZindagi.Models.Simages>
+@{
+    Layout = "_UserLayout";
+}
+<br />
+<br />
+<div class="container">
+    <div class="py-5 text-center">
+       <i class="fa fa-shopping-cart fa-10x"></i>
+        <h2>Checkout form</h2>
+        <p class="lead">Please Provide Relavant Information</p>
+    </div>
+    <div class="container">
+        @if (ViewBag.error == 0)
+        {
+            <div class="alert alert-success">
+                <strong>Your order has been placed successfully !!!</strong>
+            </div>
+        }
+        else if (ViewBag.error == 2)
+        {
+            <div class="alert alert-danger">
+                <strong>Something Went Wrong !!</strong>
+            </div>
+        }
+        else if(ViewBag.error == 3){
+        <div class="alert alert-danger">
+            <strong>Invalid Data Provided !!!</strong>
+        </div>
+        }
+    </div>
+    @if (Model != null)
+    {
+    <form action="/User/checkout" method="post">
+        <div class="row">
+            <div class="col-md-4 order-md-2 mb-4">
+                <div class="jumbotron">
+                    <h4 class="d-flex justify-content-between align-items-center mb-3">
+                        <span class="text-muted">Your cart</span>
+                        <span class="badge badge-secondary badge-pill">@Model.Count</span>
+                    </h4>
+                    <ul class="list-group mb-3">
+                        @foreach (var item in Model)
+                        {
+                            <li class="list-group-item d-flex justify-content-between lh-condensed">
+                                <div>
+                                    @if (item.ImgPath.Contains("youtube"))
+                                    {
+                                        <h1>Video</h1>
+                                        <div class="embed-responsive embed-responsive-1by1">
+                                            <h3>@item.ImgName</h3>
+                                            <p>@item.ImgPrice</p>
+                                            <iframe class="embed-responsive-item" src="@item.ImgPath" allowfullscreen></iframe>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <h1>Image</h1>
+                                        <h3>@item.ImgName</h3>
+                                        <p>@item.ImgPrice</p>
+                                        <img src="@item.ImgPath" class="rounded-0" width="75" height="75" />
+                                    }
+                                </div>
+                                <span class="text-muted"><a href="/User/removeFromCart/@item.ImgId" class="active">Remove</a></span>
+                                <input type="checkbox" name="images" checked value="@item.ImgId" hidden />
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-8 order-md-1">
+                
+                <div class="jumbotron">
+                    <div class="mb-3">
+                        <label for="email">Email <span class="text-muted">(Optional)</span></label>
+                        <input type="email" class="form-control" id="email" placeholder="you@example.com" name="OEmail">
+                    </div>
+                    <div class="mb-3">
+                        <label for="email">Your Full Name</label>
+                        <input type="text" class="form-control" id="email" placeholder="you@example.com" name="OName">
+                    </div>
+                    <div class="row">
+                        <div class="col-md-5 mb-3">
+                            <label for="country">Contact No.</label>
+                            <input type="tel" class="form-control" placeholder="03xx xxxxxxx" required="" name="OPh" />
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <label for="zip">Volunteer Code</label>
+                            <input type="text" class="form-control" id="zip" placeholder="" name="VId">
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-5 mb-3">
+                            <label for="zip">Want to Describe More ?(Optional)</label>
+                            <textarea name="ODescr" cols="50" class="form-control">No Description</textarea>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <label for="zip">Function Type</label>
+                            <select name="OFuncType" class="form-control">
+                                <option value="">--SELECT--</option>
+                                <option value="Marraige">Marraige</option>
+                                <option value="Party">Party</option>
+                                <option value="Corporate">Corporate</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-5 mb-3">
+                            <label for="zip">No. Of Guests</label>
+                            <input type="number" class="form-control" name="ONoOfGuests"/>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <label for="zip">Function Time</label>
+                            Lunch : <input type="radio" class="form-control" value="Lunch" name="OFuncTime" />
+                           Dinner : <input type="radio" class="form-control" value="Dinner" name="OFuncTime" />
+                        </div>
+                    </div>
+                    <hr class="mb-4">
+
+
+                    <button class="btn btn-primary btn-lg btn-block" type="submit">Continue to checkout</button>
+                </div>
+                
+            </div>
+        </div>
+    </form>
+    }
+    else
+    { 
+        <h4 class="lead">You haven't put anything inside your cart <span><i class="glyphicon glyphicon-shopping-cart"></i></span></h4>
+    }
+</div>

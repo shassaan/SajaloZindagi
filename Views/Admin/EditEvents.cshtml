@@ -1,0 +1,59 @@
+﻿@model SajaloZindagi.Models.Events
+@{
+    Layout = "_AdminLayout";
+}
+<div class="container">
+    @if (ViewBag.error > 0)
+    {
+        if (ViewBag.error == 1)
+        {
+            <div class="alert alert-success">
+                <strong>Successfull !!</strong>
+            </div>
+        }
+        else if (ViewBag.error == 2)
+        {
+            <div class="alert alert-danger">
+                <strong>Something Went Wrong!!(Error)</strong>
+            </div>
+        }
+        else if (ViewBag.error == 3)
+        {
+            <div class="alert alert-danger">
+                <strong>Information you provided is Invalid</strong>
+            </div>
+        }
+    }
+</div>
+@if (Model != null)
+{
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <form asp-action="AddEvents" action="\Admin\update" method="post" enctype="multipart/form-data">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <input type="hidden" value="@Model.EId" name="EId"/>
+                        <label asp-for="EName" class="control-label">Event Title</label>
+                        <input asp-for="EName" class="form-control" name="EName" value="@Model.EName" />
+                        <span asp-validation-for="EName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="EDp" class="control-label">Picture</label>
+                        <input asp-for="EDp" class="form-control" name="EDp" type="file" />
+                        <span asp-validation-for="EDp" class="text-danger"><img src="@Model.EDp" height="50" width="50" /></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="EDescriiption" class="control-label">Description</label>
+                        <textarea cols="50" asp-for="EDescriiption" class="form-control" name="EDescriiption">@Model.EDescriiption</textarea>
+                        <span asp-validation-for="EDescriiption" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Update" class="btn btn-default" />
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+}

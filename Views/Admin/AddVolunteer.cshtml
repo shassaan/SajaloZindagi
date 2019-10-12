@@ -1,0 +1,59 @@
+﻿@model SajaloZindagi.Models.Volunteer
+
+@{
+    Layout = "_AdminLayout";
+}
+<h4>Volunteer</h4>
+<div class="container">
+    @if (ViewBag.error > 0)
+    {
+        if (ViewBag.error == 1)
+        {
+            <div class="alert alert-success">
+                <strong>Successfull !!</strong>
+            </div>
+        }
+        else if (ViewBag.error == 2)
+        {
+            <div class="alert alert-danger">
+                <strong>Something Went Wrong!!(Error)</strong>
+            </div>
+        }
+        else if (ViewBag.error == 3)
+        {
+            <div class="alert alert-danger">
+                <strong>Information you provided is Invalid</strong>
+            </div>
+        }
+    }
+</div>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AddVolunteer" action="/Admin/CreateVolunteer" method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="VName" class="control-label">Name</label>
+                <input asp-for="VName" class="form-control" name="VName"/>
+                <span asp-validation-for="VName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="VAddress" class="control-label">Address</label>
+                <input asp-for="VAddress" class="form-control" name="VAddress"/>
+                <span asp-validation-for="VAddress" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="VContact" class="control-label">Contact No.</label>
+                <input asp-for="VContact" class="form-control" name="VContact"/>
+                <span asp-validation-for="VContact" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

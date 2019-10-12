@@ -1,0 +1,27 @@
+﻿@model List<SajaloZindagi.Models.Events>
+@{
+    Layout = "_UserLayout";
+}
+<br />
+<br />
+<br />
+<div class="row">
+    @for (int i = 0; i < Model.Count; i++)
+    {
+        if (i > 0 && i%3 == 0)
+        {
+            @:</div><br /><div class="row">
+        }
+
+        <div class="col-md-4">
+            
+                <div class="well">
+                    <img src="@Model[i].EDp.TrimEnd()" height="200" width="200" class="rounded-circle"/>
+                    <h4>@Model[i].EName.TrimEnd()</h4>
+                    <p class="text text-info">@Model[i].EDescriiption.TrimEnd()</p>
+                    <a class="btn btn-info" href="/User/SubEvents/@Model[i].EId">Continue</a><br />
+                </div>
+            
+        </div>
+    }
+</div>

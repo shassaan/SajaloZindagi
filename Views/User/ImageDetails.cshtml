@@ -1,0 +1,46 @@
+﻿@model SajaloZindagi.Models.Simages
+@{
+    Layout = "_UserLayout";
+}
+<br />
+<br />
+<br />
+<br />
+<div class="container">
+    <div class="panel panel-info"><a href="#" id="@Model.ImgId" class="btn btn-primary" onclick="add()"><i class="fa fa-plus-square-o"></i>Add To Cart</a></div>
+    <br /><br />
+    @if (Model.ImgPath.Contains("youtube"))
+    {
+        <div class="embed-responsive embed-responsive-21by9">
+            <iframe class="embed-responsive-item" src="@Model.ImgPath.TrimEnd()" allowfullscreen></iframe>
+        </div>
+    }
+    else
+    {
+        <img src="@Model.ImgPath.TrimEnd()" height="500" class="img img-fluid" />
+    }
+    <br />
+    <div class="jumbotron">
+        <h3>@Model.ImgName</h3>
+        <h2 class="text text-justify">Rs @Model.ImgPrice /-</h2>
+        <p class="text text-justify">@Model.ImgDescription</p>
+    </div>
+</div>
+
+<script>
+    function add() {
+        $.ajax({
+            method: "POST",
+            url: '@Url.Action("AddToCart","User")',
+            data: { 'id': event.target.id },
+            success: function (data) {
+                if (data == 1) {
+                    var prevCount = $('#badge').html();
+                    $('#badge').html(++prevCount);
+                    alert("Added to cart");
+                }
+            }
+        });
+
+    }
+</script>

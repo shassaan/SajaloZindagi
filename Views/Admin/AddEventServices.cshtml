@@ -1,0 +1,67 @@
+﻿@model List<SajaloZindagi.Models.Services>
+
+@{
+    Layout = "_AdminLayout";
+}
+<div class="container">
+    @if (ViewBag.error > 0)
+    {
+        if (ViewBag.error == 1)
+        {
+            <div class="alert alert-success">
+                <strong>Successfull !!</strong>
+            </div>
+        }
+        else if (ViewBag.error == 2)
+        {
+            <div class="alert alert-danger">
+                <strong>Something Went Wrong!!(Error)</strong>
+            </div>
+        }
+        else if (ViewBag.error == 3)
+        {
+            <div class="alert alert-danger">
+                <strong>Information you provided is Invalid</strong>
+            </div>
+        }
+    }
+</div>
+
+<h4>EventServices</h4>
+<hr />
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="AddEventServices" method="post" action="\Admin\createEventServices">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="SeId" class="control-label">Select Event</label>
+                    <select asp-for="SeId" class="form-control" name="SeId">
+                        <option>--Select--</option>
+                        @foreach (var item in ViewBag.subEvents)
+                        {
+                            <option value="@item.SeId">@item.SeName</option>
+                        }
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label asp-for="SId" class="control-label">Select Services</label>
+                    <select asp-for="SId" class="form-control" name="SId" multiple="multiple" size="4">
+                        @foreach (var item in Model)
+                        {
+                            <option value="@item.SId">@item.SName</option>
+                        }
+                    </select>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

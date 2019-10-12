@@ -1,0 +1,35 @@
+﻿@model List<SajaloZindagi.Models.SubEvents>
+@{
+    Layout = "_UserLayout";
+}
+<br />
+<br />
+<br />
+<form action="/User/Services" method="post">
+    <center><button class="btn btn-lg btn-outline-info" id="next">Next</button></center>
+    <hr/>
+    <br/>
+    <div class="row">
+        @for (int i = 0; i < Model.Count; i++)
+        {
+            if (i > 0 && i % 3 == 0)
+            {
+            @:</div><br /><div class="row">
+            }
+            <div class="col-md-4">
+               
+                    <div class="well">
+                        <img src="@Model[i].SeDp.TrimEnd()" height="200" width="200" id="@Model[i].SeId" class="rounded-circle"/>
+                        <h4>@Model[i].SeName.TrimEnd()</h4>
+                        <input type="checkbox" name="subevents" value="@Model[i].SeId" />
+                    </div>
+                </div>
+
+            
+        }
+    </div>
+</form>
+<br />
+<br />
+
+

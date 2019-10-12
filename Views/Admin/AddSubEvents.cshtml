@@ -1,0 +1,84 @@
+﻿@model List<SajaloZindagi.Models.SubEvents>
+@{
+    Layout =  "_AdminLayout";
+}
+
+<div class="container">
+    @if (ViewBag.error > 0)
+    {
+        if (ViewBag.error == 1)
+        {
+            <div class="alert alert-success">
+                <strong>Successfull !!</strong>
+            </div>
+        }
+        else if (ViewBag.error == 2)
+        {
+            <div class="alert alert-danger">
+                <strong>Something Went Wrong!!(Error)</strong>
+            </div>
+        }
+        else if (ViewBag.error == 3)
+        {
+            <div class="alert alert-danger">
+                <strong>Information you provided is Invalid</strong>
+            </div>
+        }
+    }
+</div>
+<h4>SubEvents</h4>
+<hr />
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="AddSubEvents" action="/Admin/createSubEvent" method="post" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="SeName" class="control-label">Title</label>
+                    <input asp-for="SeName" class="form-control" name="SeName" />
+                    <span asp-validation-for="SeName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="SeDp" class="control-label">Picture</label>
+                    <input asp-for="SeDp" class="form-control" name="SeDp" type="file" />
+                    <span asp-validation-for="SeDp" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="EId" class="control-label">Select Main Event</label>
+                    <select asp-for="EId" class="form-control" name="EId">
+                        <option >--SELECT--</option>
+                        @foreach (SajaloZindagi.Models.Events item in ViewBag.Events )
+                        {
+                            <option value="@item.EId">@item.EName</option>
+                        }
+                    </select>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </form>
+        </div>
+        <div class="col-md-8">
+            <div class="container">
+                @foreach (var item in Model)
+                {
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="container">
+                                <h3>Main Event : @item.E.EName</h3>
+                                <img src="@item.SeDp" width="150" height="150" />
+                                <br />
+                                <h2>Sub Event : @item.SeName</h2>
+                                <a class="btn btn-danger" href="\Admin\deleteSubEvents\@item.SeId">Delete</a><a class="btn btn-default" href="\Admin\updateSubEvents\@item.SeId">Edit</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

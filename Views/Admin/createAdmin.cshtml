@@ -1,0 +1,83 @@
+﻿@model SajaloZindagi.Models.Admin
+
+@{
+    Layout = "_AdminLayout";
+}
+
+
+<h1>New Admin</h1>
+<hr />
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            @if (ViewBag.error > 0)
+            {
+                if (ViewBag.error == 1)
+                {
+                    <div class="alert alert-success">
+                        <strong>Successfully Registered !!</strong>
+                    </div>
+                }
+                else if (ViewBag.error == 2)
+                {
+                    <div class="alert alert-danger">
+                        <strong>Something Went Wrong (Error)</strong>
+                    </div>
+                }
+                else if (ViewBag.error == 3)
+                {
+                    <div class="alert alert-danger">
+                        <strong>Information you provided is Invalid</strong>
+                    </div>
+                }
+            }
+            <form asp-action="createAdmin" action="/Admin/create" method="post" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="AUname" class="control-label">User Name</label>
+                    <input asp-for="AUname" name="AUname" class="form-control" />
+                    <span asp-validation-for="AUname" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="APassword" class="control-label">Password</label>
+                    <input asp-for="APassword" name="APassword" type="password" class="form-control" />
+                    <span asp-validation-for="APassword" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="AFullName" class="control-label">Full Name</label>
+                    <input asp-for="AFullName" name="AFullName" class="form-control" />
+                    <span asp-validation-for="AFullName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ADp" class="control-label">Picture</label>
+                    <input asp-for="ADp" name="ADp" class="form-control" type="file" />
+                    <span asp-validation-for="ADp" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="AEmail" class="control-label">Email</label>
+                    <input asp-for="AEmail" name="AEmail" class="form-control" />
+                    <span asp-validation-for="AEmail" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="AContact" class="control-label">Contact No.</label>
+                    <input asp-for="AContact" name="AContact" class="form-control" />
+                    <span asp-validation-for="AContact" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="AAccessType" class="control-label">Access</label>
+                    <input asp-for="AAccessType" name="AAccessType" class="form-control" type="radio" value="false" /><span>Limited</span>
+                    <input asp-for="AAccessType" name="AAccessType" class="form-control" type="radio" value="true" /><span>Full</span>
+                    <span asp-validation-for="AAccessType" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+
